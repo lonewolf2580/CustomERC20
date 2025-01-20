@@ -1,0 +1,19 @@
+{
+	"name": "Jinx",
+	"description": "Arcane-verse Character Jinx was torn between two identities: the strong, powerful, daughter Silco raised and the fearful, weak, little sister Vi protected. Now, accepting she’s the monster that Vi created, Jinx becomes a hollow shell—she is the cursed 'Jinx' that ruins everything.",
+	"image": "https://fuchsia-many-bear-969.mypinata.cloud/ipfs/bafkreih2o3ufdbpm4d5mtijuwzz5egpc2zpzgxnk3jxrfjri2ywkufhsma",
+	"attributes": [
+		{
+			"trait_type": "Hobby",
+			"value": "Making Explosive"
+		},
+		{
+			"trait_type": "Strengths",
+			"value": "Intelligence, Speed, Marksmanship"
+		},
+		{
+			"trait_type": "Favorite Color",
+			"value": "Blue"
+		}
+	]
+}
