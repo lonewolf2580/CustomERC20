@@ -31,6 +31,7 @@ This project implements a custom ERC-20 token with additional features such as s
 | `_rewardRate`  | Staking reward rate in basis points annually. | Max value: 1000 (10%).              |
 
 ---
+...
 
 ## Installation
 
