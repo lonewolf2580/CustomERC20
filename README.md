@@ -1,60 +1,53 @@
-# Custom ERC20 Token Project
+# NFT Marketplace Smart Contract
 
-This project implements a custom ERC-20 token with additional features such as staking rewards and an automated burning mechanism. The contract is written in Solidity and utilizes the OpenZeppelin library for secure and efficient token functionality.
-
----
+This is a decentralized NFT Marketplace built using Solidity, Hardhat, and OpenZeppelin libraries. It allows users to mint, list, buy, and auction NFTs. Additionally, it supports royalties for creators and a marketplace fee.
 
 ## Features
 
-1. **Burn Mechanism**:
-   - A percentage of each transfer is burned, reducing the total token supply over time.
-
-2. **Staking Rewards**:
-   - Users can stake tokens and earn rewards based on the staking duration.
-
-3. **Adjustable Rates**:
-   - The owner can modify the burn rate and staking reward rate, with limits to ensure fairness.
-
-4. **Transparency**:
-   - Events are emitted for key actions such as token burns, stakes, and unstakes, ensuring transparency.
-
----
-
-## Constructor Parameters
-
-| Parameter      | Description                                   | Constraints                          |
-|----------------|-----------------------------------------------|--------------------------------------|
-| `name`         | Token name (e.g., "MyToken").                 | Must be a string.                   |
-| `symbol`       | Token symbol (e.g., "MTK").                  | Must be a string.                   |
-| `initialSupply`| Initial token supply.                        | Expressed as a `uint256`.           |
-| `_burnRate`    | Burn rate per transfer in basis points.       | Max value: 1000 (10%).              |
-| `_rewardRate`  | Staking reward rate in basis points annually. | Max value: 1000 (10%).              |
-
----
+- **Mint NFTs**: Mint unique NFTs with custom metadata and set initial prices.
+- **List & Delist NFTs**: List NFTs for sale and remove them from the marketplace.
+- **Buy NFTs**: Purchase NFTs from the marketplace.
+- **Auction NFTs**: Start an auction, place bids, and end auctions with the highest bidder winning.
+- **Royalties**: NFT creators can set and collect royalties from sales.
+- **Marketplace Fee**: A small fee is charged on each transaction.
 
 ## Installation
 
+### Requirements
+
+- Node.js (v16.x or higher)
+- Hardhat
+- OpenZeppelin Contracts
+
+### Setup
+
 1. Clone the repository:
-   ```shell
-   git clone https://github.com/lonewolf2580/CustomERC20Token.git
-   cd CustomERC20Token
+   ```bash
+   git clone https://github.com/lonewolf2580/nft-marketplace.git
+   cd nft-marketplace
 
 2. npm install
 
-3. Update Constructor parameters in ignition/modules/Lock.js
 
-4. npx hardhat compile
+### 3. **ignition/modules/Lock.js**
 
-5. npx hardhat ignition deploy ./ignition/modules/Lock.js --network <network>
-
-## Example Interraction with Ethers.js
+Since you’re using Hardhat, this file isn't directly relevant to smart contracts but can be part of your modular design in the project. Below is a basic structure for `Lock.js`, which can help with custom deployments or contract interaction.
 
 ```javascript
-const contract = await ethers.getContractAt("CustomERC20Token", "DEPLOYED_CONTRACT_ADDRESS");
+// ignition/modules/Lock.js
+const { ethers } = require("hardhat");
 
-console.log(await contract.name()); // MyToken
-console.log(await contract.symbol()); // MTK
-console.log(await contract.burnRate()); // Burn rate in basis points
-console.log(await contract.rewardRate()); // Reward rate in basis points
-```
+async function lockContract(contract, address) {
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contracts with the account:", deployer.address);
 
+    const contractInstance = await ethers.getContractAt("Marketplace", contract);
+
+    console.log("Locking contract for address:", address);
+
+    // Example: Add logic to lock a function or deploy a modifier
+    await contractInstance.updateMarketplaceFee(0); // Locking the fee
+    console.log("Contract locked.");
+}
+
+module.exports = { lockContract };
