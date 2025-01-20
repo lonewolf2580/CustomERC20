@@ -1,13 +1,17 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-module.exports = buildModule("DeployNFTMarketplace", (m) => {
-  // Define parameters for the Marketplace contract
-  const marketplaceFee = 500;  // 5% marketplace fee
+module.exports = buildModule("DeployToken", (m) => {
+  // Define constructor parameters
+  const name = "MyToken";
+  const symbol = "MTK";
+  const initialSupply = BigInt("1000000000000000000000000"); // 1 million tokens with 18 decimal places
+  const burnRate = 200; // 2% burn rate (200 basis points)
+  const rewardRate = 500; // 5% reward rate (500 basis points)
 
-  // Deploy the Marketplace contract (no constructor parameters needed in this case)
-  const Marketplace = m.contract("Marketplace", {
-    args: [],  // No constructor args needed as it's set to default values in the contract
+  // Deploy the contract with parameters
+  const CustomERC20Token = m.contract("CustomERC20Token", {
+    args: [name, symbol, initialSupply, burnRate, rewardRate], // Pass parameters here
   });
 
-  return { Marketplace };
+  return { CustomERC20Token };
 });
